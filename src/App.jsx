@@ -9,22 +9,29 @@ import NotFound from './pages/NotFound.jsx';
 import Login from './pages/Login/Login.jsx';
 import SignUp from './pages/SignUp/SignUp.jsx';
 
+import UserLayout from './layout/UserLayout.jsx';
+import AuthLayout from './layout/AuthLayout.jsx';
+
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/courses/" element={<Courses />} />
-        <Route path="/courses/:name" element={<CoursesDetails />} />
-        <Route path="/books/" element={<Books />} />
-        <Route path="/about/" element={<About />} />
-        <Route path="/portfolio/" element={<Portfolio />} />
-
         {/* Auth Pages */}
-        <Route  path="/login/" element={<Login />} />
-        <Route  path="/signup/" element={<SignUp />} />
+        <Route element={<AuthLayout />}>
+            <Route path="/login/" element={<Login />} />
+            <Route path="/signup/" element={<SignUp />} />
+        </Route>
 
-        <Route path="*" element={<NotFound />} />
+        <Route element={<UserLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/courses/" element={<Courses />} />
+            <Route path="/courses/:name" element={<CoursesDetails />} />
+            <Route path="/books/" element={<Books />} />
+            <Route path="/about/" element={<About />} />
+            <Route path="/portfolio/" element={<Portfolio />} />
+            <Route path="*" element={<NotFound />} />
+        </Route>
+
       </Routes>
     </>
   )
